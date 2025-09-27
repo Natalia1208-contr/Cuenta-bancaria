@@ -37,21 +37,23 @@ public class CuentaAhorros extends Cuenta {
         return mensaje;
     }
 
-    public String extractoMens(){
-        String mensaje="";
+    public float calcularExtractoMensual(){
         int numRetirosExcedentes=getNumRetiros()-4;
+        float comision=0;
         if(numRetirosExcedentes>0) {
-            setSaldo(getSaldo() - (numRetirosExcedentes *1000));
+            comision=numRetirosExcedentes*1000;
+            setSaldo(getSaldo() - comision);
         }
+        setComisionMens(comision);
         if(getSaldo()>10000){
-            mensaje="Su cuenta está activa";
+            activa=true;
         }else{
-            mensaje="Cuenta inactiva";
+            activa=false;
         }
-        return mensaje;
+        return comision;
     }
     public void mostrarMensajeAhorros(){
-        System.out.println("Saldo: "+ getSaldo()+"\n"+"comision mensual"+getComisionMens()+"\n"+"Número de transacciones realizadas: "+(getNumRetiros()+getNumConsignaciones()));;
+        System.out.println("Saldo: "+ getSaldo()+"\n"+"comision mensual: "+getComisionMens()+"\n"+"Número de transacciones realizadas: "+(getNumRetiros()+getNumConsignaciones()));;
     }
 
 
