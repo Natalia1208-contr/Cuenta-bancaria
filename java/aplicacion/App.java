@@ -25,14 +25,14 @@ public class App {
         float calcularExtractoM=cuentaAhorros.calcularExtractoMensual();
         cuentaAhorros.mostrarMensajeAhorros();
 
-        System.out.println("cuenta corriente--------");
-        CuentaCorriente cuentaCorriente = new CuentaCorriente(1000000f, 11f);
+        System.out.println("\ncuenta corriente--------");
+        CuentaCorriente cuentaCorriente = new CuentaCorriente(1000000, 11);
         float interesMensu = cuentaCorriente.calcularIntMensual();
-        String consignarDin= cuentaCorriente.consignarDinero(3000f);
-        String retiroUno=cuentaCorriente.retirarDineroSobre(720000f);
-        String retiroDos=cuentaCorriente.retirarDineroSobre(300000f);
-        String retiroTres=cuentaCorriente.retirarDineroSobre(4000f);
-        float calcularExtractoMen=cuentaAhorros.calcularExtractoMensual();
+        String consignarDin= cuentaCorriente.consignarDinero(3000);
+        String retiroUno=cuentaCorriente.retirarDineroSobre(720000);
+        String retiroDos=cuentaCorriente.retirarDineroSobre(300000);
+        String retiroTres=cuentaCorriente.retirarDineroSobre(4000);
+        float calcularExtractoMen=cuentaCorriente.calcularExtractoMensual();
         cuentaCorriente.mostrarMensajeCorriente();
 
     }

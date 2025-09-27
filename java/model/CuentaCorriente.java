@@ -20,20 +20,29 @@ public class CuentaCorriente extends Cuenta {
        if(monto<=getSaldo()){
            return super.retirarDinero(monto);
        }else{
-           setSaldo(getSaldo()-monto);
-           setSobregiro(getSaldo()-monto);
-           mensaje="Retiro exitoso, tiene un sobregiro";
+           float nuevoSobreGiro=getSobregiro()+(monto-getSaldo());
+           setSobregiro(nuevoSobreGiro);
+           setSaldo(0);
+           mensaje="Retiro exitoso, tiene un sobregiro por: "+getSobregiro();
+           setNumRetiros(getNumRetiros()+1);
        }
         return mensaje;
     }
 
     public String consignarDinero(float monto){
-        String mensaje="Consignación exitosa";
-        super.consignarDinero(monto);
-        if(getSobregiro()!=0){
-            setSobregiro(getSobregiro()-monto);
+        if(monto<=0){return"Monto ingresado incorrecto";}
+        if(getSobregiro()>0){
+            if(monto>=getSobregiro()) {
+                float restante=monto-getSobregiro();
+                setSobregiro(0);
+                super.consignarDinero(restante);
+            }else{
+                setSobregiro(getSobregiro()-monto);
+            }
+        }else{
+            super.consignarDinero(monto);
         }
-        return mensaje;
+        return "Consignación exitosa";
     }
     public float calcularExtractoMensual(){
         return super.calcularExtractoMensual();

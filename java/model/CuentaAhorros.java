@@ -12,7 +12,7 @@ public class CuentaAhorros extends Cuenta {
         }
     }
 
-    public boolean isActiva() {
+    public boolean getActiva() {
         return activa;
     }
 
@@ -39,15 +39,14 @@ public class CuentaAhorros extends Cuenta {
 
     public String extractoMens(){
         String mensaje="";
-        if(getNumRetiros()>4) {
-            for(int i=0;i<getNumRetiros()-4;i++) {
-                setSaldo(getSaldo()- 1000);
-            }
+        int numRetirosExcedentes=getNumRetiros()-4;
+        if(numRetirosExcedentes>0) {
+            setSaldo(getSaldo() - (numRetirosExcedentes *1000));
         }
         if(getSaldo()>10000){
             mensaje="Su cuenta está activa";
         }else{
-            mensaje="Cuenta incactiva";
+            mensaje="Cuenta inactiva";
         }
         return mensaje;
     }
